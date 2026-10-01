@@ -65,9 +65,11 @@ body{
     position:absolute;
     inset:0;
     background:
-        radial-gradient(ellipse at 50% 75%,
-        rgba(218,181,81,.10),
-        transparent 36%);
+        radial-gradient(
+            ellipse at 50% 75%,
+            rgba(218,181,81,.10),
+            transparent 36%
+        );
     mix-blend-mode:screen;
 }
 
@@ -75,6 +77,7 @@ body{
     from{
         transform:perspective(450px) rotateX(58deg) translateY(0);
     }
+
     to{
         transform:perspective(450px) rotateX(58deg) translateY(18px);
     }
@@ -108,8 +111,15 @@ body{
 .particles span:nth-child(7){left:54%;top:10%;animation-delay:1.5s}
 
 @keyframes float{
-    0%,100%{transform:translateY(0);opacity:.25}
-    50%{transform:translateY(-18px);opacity:.7}
+    0%,100%{
+        transform:translateY(0);
+        opacity:.25;
+    }
+
+    50%{
+        transform:translateY(-18px);
+        opacity:.7;
+    }
 }
 
 /* CONTENEDOR */
@@ -149,6 +159,8 @@ body{
     animation:shine 6s infinite;
 }
 
+/* FOTO HORIZONTAL */
+
 .hero-image{
     position:relative;
     width:100%;
@@ -157,6 +169,8 @@ body{
     overflow:hidden;
     border:1px solid rgba(226,194,105,.35);
     background:#050505;
+    cursor:pointer;
+    isolation:isolate;
 }
 
 .hero-image img{
@@ -166,7 +180,7 @@ body{
     display:block;
     filter:saturate(.8) contrast(1.08) brightness(.82);
 }
-    
+
 .hero-image::after{
     content:"";
     position:absolute;
@@ -179,11 +193,12 @@ body{
             rgba(0,0,0,.32) 100%
         );
     pointer-events:none;
+    z-index:1;
 }
 
 .cat-mark{
     position:absolute;
-    z-index:3;
+    z-index:4;
     bottom:16px;
     left:50%;
     transform:translateX(-50%);
@@ -191,6 +206,34 @@ body{
     letter-spacing:7px;
     color:#f0d58b;
     text-shadow:0 0 15px rgba(239,203,110,.6);
+    pointer-events:none;
+}
+
+/* INDICACIÓN PARA ABRIR FOTO */
+
+.photo-hint{
+    position:absolute;
+    left:50%;
+    bottom:17px;
+    transform:translateX(-50%);
+    z-index:5;
+
+    padding:8px 15px;
+
+    border:1px solid rgba(235,203,119,.45);
+    border-radius:30px;
+
+    background:rgba(0,0,0,.58);
+    backdrop-filter:blur(7px);
+
+    color:#e8ca7b;
+    font-size:8px;
+    letter-spacing:2px;
+
+    white-space:nowrap;
+    pointer-events:none;
+
+    opacity:.78;
 }
 
 /* TITULO */
@@ -401,7 +444,7 @@ h1{
     font-style:italic;
 }
 
-/* BOTÓN */
+/* BOTÓN DEL POEMA */
 
 .poem-area{
     text-align:center;
@@ -444,6 +487,122 @@ h1{
         0 8px 25px rgba(0,0,0,.4);
 }
 
+/* VISOR DE FOTO GRANDE */
+
+.photo-viewer{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+
+    display:none;
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(45,25,65,.25),
+            rgba(0,0,0,.97) 70%
+        );
+
+    backdrop-filter:blur(14px);
+
+    opacity:0;
+    transition:opacity .35s ease;
+}
+
+.photo-viewer.active{
+    opacity:1;
+}
+
+.photo-viewer img{
+    max-width:96vw;
+    max-height:82vh;
+
+    width:auto;
+    height:auto;
+
+    object-fit:contain;
+
+    border-radius:14px;
+
+    border:1px solid rgba(228,193,100,.65);
+
+    box-shadow:
+        0 0 35px rgba(225,188,87,.18),
+        0 0 90px rgba(150,75,255,.10),
+        0 25px 80px rgba(0,0,0,.8);
+
+    animation:photoZoom .45s ease both;
+}
+
+@keyframes photoZoom{
+    from{
+        opacity:0;
+        transform:scale(.88);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+.viewer-title{
+    position:absolute;
+    top:24px;
+    left:50%;
+    transform:translateX(-50%);
+
+    color:#dcb866;
+    font-family:'Cinzel',serif;
+    font-size:11px;
+    letter-spacing:3px;
+
+    text-align:center;
+    white-space:nowrap;
+}
+
+.close-photo{
+    position:absolute;
+
+    left:50%;
+    bottom:25px;
+
+    transform:translateX(-50%);
+
+    min-width:190px;
+    padding:13px 22px;
+
+    border-radius:40px;
+
+    border:1px solid rgba(226,190,92,.6);
+
+    background:rgba(7,7,7,.88);
+
+    color:#e9ca7a;
+
+    font-family:'Cinzel',serif;
+    font-size:12px;
+    letter-spacing:1px;
+
+    box-shadow:
+        0 0 20px rgba(223,184,80,.12);
+
+    cursor:pointer;
+
+    transition:.3s ease;
+}
+
+.close-photo:hover{
+    box-shadow:
+        0 0 30px rgba(223,184,80,.25);
+
+    transform:translateX(-50%) translateY(-3px);
+}
+
 /* PIE */
 
 footer{
@@ -454,11 +613,14 @@ footer{
     letter-spacing:3px;
 }
 
+/* ANIMACIONES */
+
 @keyframes appear{
     from{
         opacity:0;
         transform:translateY(20px);
     }
+
     to{
         opacity:1;
         transform:translateY(0);
@@ -466,8 +628,13 @@ footer{
 }
 
 @keyframes shine{
-    0%,70%{transform:translateX(-120%)}
-    100%{transform:translateX(120%)}
+    0%,70%{
+        transform:translateX(-120%);
+    }
+
+    100%{
+        transform:translateX(120%);
+    }
 }
 
 /* MÓVIL */
@@ -480,8 +647,28 @@ footer{
         padding-bottom:40px;
     }
 
+    /*
+       IMPORTANTE:
+       No ponemos height fijo aquí.
+       Así la foto conserva su formato horizontal.
+    */
+
     .hero-image{
-        height:230px;
+        width:100%;
+        aspect-ratio:16 / 9;
+        height:auto;
+    }
+
+    .photo-hint{
+        font-size:7px;
+        letter-spacing:1.4px;
+        bottom:12px;
+        padding:7px 11px;
+    }
+
+    .cat-mark{
+        font-size:20px;
+        bottom:12px;
     }
 
     .title-area{
@@ -520,6 +707,29 @@ footer{
         width:100%;
         font-size:12px;
     }
+
+    .photo-viewer{
+        padding:12px;
+    }
+
+    .photo-viewer img{
+        max-width:96vw;
+        max-height:75vh;
+        border-radius:10px;
+    }
+
+    .viewer-title{
+        top:17px;
+        font-size:8px;
+        letter-spacing:2px;
+        max-width:90%;
+        white-space:normal;
+    }
+
+    .close-photo{
+        bottom:18px;
+        min-width:180px;
+    }
 }
 </style>
 </head>
@@ -541,12 +751,28 @@ footer{
 <main class="page">
 
     <!-- IMAGEN SUPERIOR -->
+
     <section class="hero">
 
-        <div class="hero-image">
-            <!-- Cambia "noah-octubre.jpg" por el nombre exacto de tu imagen -->
-            <img src="file_00000000b9d4822f9ef6fb2285a17c70.png" alt="Un recuerdo especial">
-            <div class="cat-mark">🐾 ✦ 🐾</div>
+        <div
+            class="hero-image"
+            id="photoFrame"
+            ondblclick="openPhoto()"
+        >
+
+            <img
+                src="file_00000000b9d4822f9ef6fb2285a17c70.png"
+                alt="Un recuerdo especial"
+            >
+
+            <div class="cat-mark">
+                🐾 ✦ 🐾
+            </div>
+
+            <div class="photo-hint">
+                TOCA DOS VECES PARA VERLA GRANDE
+            </div>
+
         </div>
 
         <div class="title-area">
@@ -555,10 +781,14 @@ footer{
                 PRIMER AMANECER · OCTUBRE 2026
             </div>
 
-            <h1>✦ DONDE OCTUBRE GUARDA TU NOMBRE ✦</h1>
+            <h1>
+                ✦ DONDE OCTUBRE GUARDA TU NOMBRE ✦
+            </h1>
 
             <div class="title-reflection">
-                <h1>✦ DONDE OCTUBRE GUARDA TU NOMBRE ✦</h1>
+                <h1>
+                    ✦ DONDE OCTUBRE GUARDA TU NOMBRE ✦
+                </h1>
             </div>
 
         </div>
@@ -570,7 +800,9 @@ footer{
 
     <article class="letter">
 
-        <p><strong>Mi Lunita de Ternura Eterna,</strong></p>
+        <p>
+            <strong>Mi Lunita de Ternura Eterna,</strong>
+        </p>
 
         <p>
             Te dejé estas palabras preparadas desde antes, para que estuvieran esperándote desde el momento en que abrieras los ojos, aunque esta vez quiero mostrártelas cuando estemos juntos, porque quiero ver tu carita y guardar también esa reacción conmigo.
@@ -642,8 +874,10 @@ footer{
             AQUI EL POEMA DE HOY PRECIOSA
         </div>
 
-        <!-- Cambia "poema-1-octubre.html" por el nombre real del HTML -->
-        <a class="poem-button" href="https://j8753741-eng.github.io/Jueves-1-de-octubre-del-2026---poema/">
+        <a
+            class="poem-button"
+            href="https://j8753741-eng.github.io/Jueves-1-de-octubre-del-2026---poema/"
+        >
             🐾 ABRIR EL POEMA DE HOY ✦
         </a>
 
@@ -656,5 +890,103 @@ footer{
 
 </main>
 
+
+<!-- VISOR DE LA FOTO -->
+
+<div
+    class="photo-viewer"
+    id="photoViewer"
+>
+
+    <div class="viewer-title">
+        ✦ UN PEQUEÑO RECUERDO PARA OCTUBRE ✦
+    </div>
+
+    <img
+        src="file_00000000b9d4822f9ef6fb2285a17c70.png"
+        alt="Recuerdo especial"
+    >
+
+    <button
+        class="close-photo"
+        onclick="closePhoto()"
+    >
+        🐾 VOLVER A LA CARTA
+    </button>
+
+</div>
+
+
+<script>
+
+/* ABRIR FOTO */
+
+function openPhoto(){
+
+    const viewer = document.getElementById("photoViewer");
+
+    viewer.style.display = "flex";
+
+    requestAnimationFrame(function(){
+
+        viewer.classList.add("active");
+
+    });
+
+    document.body.style.overflow = "hidden";
+}
+
+
+/* CERRAR FOTO */
+
+function closePhoto(){
+
+    const viewer = document.getElementById("photoViewer");
+
+    viewer.classList.remove("active");
+
+    setTimeout(function(){
+
+        viewer.style.display = "none";
+
+    },350);
+
+    document.body.style.overflow = "";
+}
+
+
+/* TOCAR FUERA DE LA FOTO PARA CERRAR */
+
+document.getElementById("photoViewer").addEventListener(
+    "click",
+    function(event){
+
+        if(event.target === this){
+
+            closePhoto();
+
+        }
+
+    }
+);
+
+
+/* TECLA ESC */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Escape"){
+
+            closePhoto();
+
+        }
+
+    }
+);
+
+</script>
+
 </body>
-  </html>
+</html> 
