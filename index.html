@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#030303">
+<title>Donde Octubre Guarda Tu Nombre</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap');
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    background:#020202;
+    color:#e7c875;
+    font-family:'Montserrat',sans-serif;
+    overflow-x:hidden;
+}
+
+/* FONDO NEGRO CON EFECTO DE AGUA */
+
+.water{
+    position:fixed;
+    inset:0;
+    z-index:-5;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 50% 18%, rgba(210,169,67,.08), transparent 32%),
+        linear-gradient(to bottom,#010101 0%,#030303 45%,#050505 100%);
+}
+
+.water::before{
+    content:"";
+    position:absolute;
+    left:-20%;
+    right:-20%;
+    bottom:-5%;
+    height:65%;
+    opacity:.26;
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent 0px,
+            rgba(229,194,103,.08) 2px,
+            transparent 4px,
+            transparent 13px
+        );
+    transform:perspective(450px) rotateX(58deg);
+    filter:blur(1px);
+    animation:waterMove 8s ease-in-out infinite alternate;
+}
+
+.water::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        radial-gradient(ellipse at 50% 75%,
+        rgba(218,181,81,.10),
+        transparent 36%);
+    mix-blend-mode:screen;
+}
+
+@keyframes waterMove{
+    from{
+        transform:perspective(450px) rotateX(58deg) translateY(0);
+    }
+    to{
+        transform:perspective(450px) rotateX(58deg) translateY(18px);
+    }
+}
+
+/* PARTÍCULAS */
+
+.particles{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-1;
+}
+
+.particles span{
+    position:absolute;
+    width:2px;
+    height:2px;
+    border-radius:50%;
+    background:#e9ca78;
+    opacity:.45;
+    animation:float 7s infinite ease-in-out;
+}
+
+.particles span:nth-child(1){left:12%;top:20%;animation-delay:0s}
+.particles span:nth-child(2){left:83%;top:14%;animation-delay:1s}
+.particles span:nth-child(3){left:72%;top:42%;animation-delay:2s}
+.particles span:nth-child(4){left:18%;top:63%;animation-delay:3s}
+.particles span:nth-child(5){left:91%;top:77%;animation-delay:4s}
+.particles span:nth-child(6){left:39%;top:88%;animation-delay:2.5s}
+.particles span:nth-child(7){left:54%;top:10%;animation-delay:1.5s}
+
+@keyframes float{
+    0%,100%{transform:translateY(0);opacity:.25}
+    50%{transform:translateY(-18px);opacity:.7}
+}
+
+/* CONTENEDOR */
+
+.page{
+    width:min(94%,760px);
+    margin:auto;
+    padding:28px 0 60px;
+}
+
+/* ENCABEZADO */
+
+.hero{
+    position:relative;
+    border:1px solid rgba(218,181,81,.45);
+    border-radius:25px;
+    padding:10px;
+    background:rgba(7,7,7,.88);
+    box-shadow:
+        0 0 35px rgba(215,178,75,.08),
+        inset 0 0 25px rgba(215,178,75,.04);
+    overflow:hidden;
+    animation:appear 1.4s ease both;
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:25px;
+    background:linear-gradient(
+        125deg,
+        transparent 20%,
+        rgba(255,220,130,.12),
+        transparent 55%
+    );
+    animation:shine 6s infinite;
+}
+
+.hero-image{
+    position:relative;
+    height:270px;
+    border-radius:18px;
+    overflow:hidden;
+    border:1px solid rgba(226,194,105,.35);
+    background:#050505;
+}
+
+.hero-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    filter:saturate(.8) contrast(1.08) brightness(.82);
+}
+
+.hero-image::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(to bottom,
+        rgba(0,0,0,.05),
+        rgba(0,0,0,.12) 45%,
+        rgba(0,0,0,.82));
+}
+
+.cat-mark{
+    position:absolute;
+    z-index:3;
+    bottom:16px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:25px;
+    letter-spacing:7px;
+    color:#f0d58b;
+    text-shadow:0 0 15px rgba(239,203,110,.6);
+}
+
+/* TITULO */
+
+.title-area{
+    text-align:center;
+    padding:38px 14px 30px;
+}
+
+.small-line{
+    font-size:11px;
+    letter-spacing:5px;
+    color:#92773d;
+    margin-bottom:15px;
+}
+
+h1{
+    font-family:'Cinzel',serif;
+    font-weight:500;
+    font-size:clamp(22px,6vw,39px);
+    line-height:1.4;
+    letter-spacing:2px;
+    color:#e8c873;
+    text-shadow:
+        0 0 10px rgba(232,200,115,.22),
+        0 10px 18px rgba(232,200,115,.07);
+}
+
+.title-reflection{
+    height:34px;
+    overflow:hidden;
+    margin-top:-2px;
+    opacity:.25;
+    transform:scaleY(-1);
+    filter:blur(1.2px);
+    mask-image:linear-gradient(to bottom,black,transparent);
+    -webkit-mask-image:linear-gradient(to bottom,black,transparent);
+}
+
+.title-reflection h1{
+    color:#b89b55;
+}
+
+/* CARTA */
+
+.letter{
+    position:relative;
+    margin-top:8px;
+    padding:34px 27px 38px;
+    border-radius:27px;
+    border:1px solid rgba(211,173,79,.28);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(16,16,16,.96),
+            rgba(5,5,5,.97)
+        );
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.7),
+        inset 0 0 35px rgba(224,187,90,.025);
+    overflow:hidden;
+}
+
+.letter::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:50%;
+    width:70%;
+    height:1px;
+    transform:translateX(-50%);
+    background:linear-gradient(
+        90deg,
+        transparent,
+        #dcb866,
+        transparent
+    );
+    box-shadow:0 0 14px #dcb866;
+}
+
+.letter::after{
+    content:"";
+    position:absolute;
+    inset:auto -20% -120px;
+    height:220px;
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            rgba(218,184,91,.045) 3px,
+            transparent 6px,
+            transparent 15px
+        );
+    transform:perspective(300px) rotateX(60deg);
+    opacity:.5;
+    pointer-events:none;
+}
+
+/* TEXTO */
+
+.letter p{
+    position:relative;
+    z-index:2;
+    font-size:15.5px;
+    line-height:1.95;
+    font-weight:300;
+    color:#e6d8b3;
+    margin-bottom:22px;
+}
+
+.letter strong{
+    color:#efd17c;
+    font-weight:600;
+    text-shadow:0 0 9px rgba(236,200,108,.15);
+}
+
+.letter p:first-child{
+    text-align:center;
+    font-family:'Cinzel',serif;
+    font-size:18px;
+    letter-spacing:1px;
+    color:#edcb74;
+    margin-bottom:29px;
+}
+
+.signature{
+    text-align:center;
+    font-family:'Cinzel',serif;
+    font-size:17px !important;
+    letter-spacing:2px;
+    color:#e9c86f !important;
+    margin-top:30px;
+}
+
+/* SEPARADORES GATUNOS */
+
+.cat-divider{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:13px;
+    margin:30px 0;
+    color:#c8a95c;
+    opacity:.75;
+}
+
+.cat-divider::before,
+.cat-divider::after{
+    content:"";
+    height:1px;
+    width:65px;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(219,183,87,.65)
+    );
+}
+
+.cat-divider::after{
+    background:linear-gradient(
+        90deg,
+        rgba(219,183,87,.65),
+        transparent
+    );
+}
+
+/* FRASE FINAL */
+
+.final-love{
+    margin-top:35px;
+    padding:31px 22px;
+    border:1px solid rgba(172,77,255,.4);
+    border-radius:23px;
+    background:
+        radial-gradient(
+            circle at 50% 50%,
+            rgba(130,45,220,.13),
+            transparent 65%
+        ),
+        rgba(7,3,11,.88);
+    box-shadow:
+        0 0 30px rgba(146,48,255,.10),
+        inset 0 0 25px rgba(151,61,255,.06);
+    text-align:center;
+}
+
+.final-love p{
+    color:#d9c6eb;
+    font-size:15px;
+    line-height:1.9;
+    margin-bottom:18px;
+}
+
+.final-love .neon{
+    font-family:'Cinzel',serif;
+    font-size:clamp(17px,5vw,24px);
+    line-height:1.6;
+    color:#e8baff;
+    text-shadow:
+        0 0 5px #c35cff,
+        0 0 12px #9f32ff,
+        0 0 25px rgba(164,55,255,.8),
+        0 0 45px rgba(139,36,255,.45);
+}
+
+.final-love .noah{
+    color:#d7b7ee;
+    font-style:italic;
+}
+
+/* BOTÓN */
+
+.poem-area{
+    text-align:center;
+    padding:38px 10px 10px;
+}
+
+.poem-label{
+    font-size:10px;
+    letter-spacing:4px;
+    color:#806b43;
+    margin-bottom:16px;
+}
+
+.poem-button{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    min-height:54px;
+    padding:0 27px;
+    border-radius:50px;
+    border:1px solid rgba(224,188,94,.6);
+    color:#f0d17d;
+    text-decoration:none;
+    font-family:'Cinzel',serif;
+    font-size:13px;
+    letter-spacing:1px;
+    background:rgba(10,10,10,.85);
+    box-shadow:
+        0 0 18px rgba(219,178,76,.09),
+        inset 0 0 12px rgba(219,178,76,.04);
+    transition:.35s ease;
+}
+
+.poem-button:hover{
+    transform:translateY(-3px);
+    border-color:#f1d27d;
+    box-shadow:
+        0 0 25px rgba(229,190,82,.22),
+        0 8px 25px rgba(0,0,0,.4);
+}
+
+/* PIE */
+
+footer{
+    text-align:center;
+    margin-top:45px;
+    color:#5f5339;
+    font-size:9px;
+    letter-spacing:3px;
+}
+
+@keyframes appear{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes shine{
+    0%,70%{transform:translateX(-120%)}
+    100%{transform:translateX(120%)}
+}
+
+/* MÓVIL */
+
+@media(max-width:600px){
+
+    .page{
+        width:93%;
+        padding-top:17px;
+        padding-bottom:40px;
+    }
+
+    .hero-image{
+        height:230px;
+    }
+
+    .title-area{
+        padding:30px 8px 25px;
+    }
+
+    h1{
+        font-size:22px;
+        letter-spacing:1.2px;
+    }
+
+    .letter{
+        padding:29px 20px 32px;
+        border-radius:22px;
+    }
+
+    .letter p{
+        font-size:14.7px;
+        line-height:1.88;
+        margin-bottom:20px;
+    }
+
+    .letter p:first-child{
+        font-size:16px;
+    }
+
+    .final-love{
+        padding:27px 18px;
+    }
+
+    .final-love p{
+        font-size:14px;
+    }
+
+    .poem-button{
+        width:100%;
+        font-size:12px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="water"></div>
+
+<div class="particles">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+<main class="page">
+
+    <!-- IMAGEN SUPERIOR -->
+    <section class="hero">
+
+        <div class="hero-image">
+            <!-- Cambia "noah-octubre.jpg" por el nombre exacto de tu imagen -->
+            <img src="noah-octubre.jpg" alt="Un recuerdo especial">
+            <div class="cat-mark">🐾 ✦ 🐾</div>
+        </div>
+
+        <div class="title-area">
+
+            <div class="small-line">
+                PRIMER AMANECER · OCTUBRE 2026
+            </div>
+
+            <h1>✦ DONDE OCTUBRE GUARDA TU NOMBRE ✦</h1>
+
+            <div class="title-reflection">
+                <h1>✦ DONDE OCTUBRE GUARDA TU NOMBRE ✦</h1>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CARTA -->
+
+    <article class="letter">
+
+        <p><strong>✦ DONDE OCTUBRE GUARDA TU NOMBRE ✦</strong></p>
+
+        <p><strong>Mi Lunita de Ternura Eterna,</strong></p>
+
+        <p>
+            Te dejé estas palabras preparadas desde antes, para que estuvieran esperándote desde el momento en que abrieras los ojos, aunque esta vez quiero mostrártelas cuando estemos juntos, porque quiero ver tu carita y guardar también esa reacción conmigo.
+        </p>
+
+        <p>
+            Y te lo digo, mi niña hermosa: lo siento por usar a Noah para las cartas de este mes. No quiero que sientas que estoy convirtiendo tu tristeza en algo diferente; solo quiero recordártelo con muchísimo amor, porque sé cuánto lo quisiste y cuánto lo sigues queriendo.
+        </p>
+
+        <p>
+            Por eso, preciosa, así lo vas a encontrar cada día cuando te escriba, y también voy a mencionártelo cada vez que pueda, porque quiero que su recuerdo siga teniendo un pequeño lugar bonito entre nosotros. 🤍
+        </p>
+
+        <p>
+            Espero de corazón que te guste lo que preparé y que te haga sentir bien. Pero si algún día no te gusta o quieres que lo quite, dímelo, mi princesa, porque lo haré sin pensarlo. Lo hice solamente porque quería prepararte algo bonito para recordarlo.
+        </p>
+
+        <p>
+            Yo lo quise demasiado, amor… y todavía lo quiero desde ese pedacito de historia que compartimos contigo.
+        </p>
+
+        <p>
+            Y ahora sí, mi niña bella: bienvenido, octubre.<br>
+            Que este nuevo mes nos regale muchos momentos bonitos, y que hoy tengas un día precioso.
+        </p>
+
+        <p>
+            Te amo muchísimo, mi princesa.<br>
+            Y desde que abras los ojos, quiero que recuerdes que hay un pedacito de mi amor acompañándote. 🤍
+        </p>
+
+        <p class="signature">
+            VALERIA PETRO VILLAZÓN
+        </p>
+
+    </article>
+
+
+    <div class="cat-divider">
+        🐾 ✦ 🐾
+    </div>
+
+
+    <!-- CIERRE ESPECIAL -->
+
+    <section class="final-love">
+
+        <p>
+            Y si octubre comienza con tu nombre, quiero que cada uno de sus días encuentre alguna manera de recordarte cuánto te amo, cuánto deseo seguir caminando a tu lado y cuánto de mi corazón vive en cada instante que compartimos. Porque aunque el tiempo cambie, aunque lleguen nuevos días y aunque la vida nos lleve por caminos distintos, mi amor siempre va a reconocer el camino de regreso hacia ti, mi princesa.
+        </p>
+
+        <p class="noah">
+            Et que notre petit Noah veille sur nous depuis le ciel et soit avec nous partout où nous irons, ma précieuse.
+        </p>
+
+        <p class="neon">
+            TE AMO MUCHÍSIMO<br>
+            VALERIA PETRO VILLAZÓN
+        </p>
+
+    </section>
+
+
+    <!-- BOTÓN DEL POEMA -->
+
+    <section class="poem-area">
+
+        <div class="poem-label">
+            UNA PEQUEÑA SORPRESA PARA HOY
+        </div>
+
+        <!-- Cambia "poema-1-octubre.html" por el nombre real del HTML -->
+        <a class="poem-button" href="poema-1-octubre.html">
+            🐾 ABRIR EL POEMA DE HOY ✦
+        </a>
+
+    </section>
+
+
+    <footer>
+        OCTUBRE · 01 · 2026
+    </footer>
+
+</main>
+
+</body>
+  </html>
