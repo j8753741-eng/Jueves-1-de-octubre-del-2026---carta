@@ -27,7 +27,9 @@ body{
     overflow-x:hidden;
 }
 
-/* FONDO NEGRO CON EFECTO DE AGUA */
+/* =====================================================
+   FONDO NEGRO CON EFECTO DE AGUA
+   ===================================================== */
 
 .water{
     position:fixed;
@@ -83,7 +85,9 @@ body{
     }
 }
 
-/* PARTÍCULAS */
+/* =====================================================
+   PARTÍCULAS
+   ===================================================== */
 
 .particles{
     position:fixed;
@@ -122,7 +126,9 @@ body{
     }
 }
 
-/* CONTENEDOR */
+/* =====================================================
+   CONTENEDOR
+   ===================================================== */
 
 .page{
     width:min(94%,760px);
@@ -130,7 +136,9 @@ body{
     padding:28px 0 60px;
 }
 
-/* ENCABEZADO */
+/* =====================================================
+   ENCABEZADO
+   ===================================================== */
 
 .hero{
     position:relative;
@@ -159,32 +167,48 @@ body{
     animation:shine 6s infinite;
 }
 
-/* FOTO HORIZONTAL */
+/* =====================================================
+   FOTO SUPERIOR HORIZONTAL
+   ===================================================== */
 
 .hero-image{
     position:relative;
     width:100%;
+
+    /* La imagen conserva su proporción */
     aspect-ratio:16 / 9;
+
     border-radius:18px;
     overflow:hidden;
+
     border:1px solid rgba(226,194,105,.35);
+
     background:#050505;
+
     cursor:pointer;
+
     isolation:isolate;
 }
 
 .hero-image img{
     width:100%;
     height:100%;
+
     object-fit:contain;
+
     display:block;
-    filter:saturate(.8) contrast(1.08) brightness(.82);
+
+    filter:
+        saturate(.8)
+        contrast(1.08)
+        brightness(.82);
 }
 
 .hero-image::after{
     content:"";
     position:absolute;
     inset:0;
+
     background:
         linear-gradient(
             to bottom,
@@ -192,6 +216,7 @@ body{
             rgba(0,0,0,.04) 55%,
             rgba(0,0,0,.32) 100%
         );
+
     pointer-events:none;
     z-index:1;
 }
@@ -199,23 +224,35 @@ body{
 .cat-mark{
     position:absolute;
     z-index:4;
+
     bottom:16px;
     left:50%;
+
     transform:translateX(-50%);
+
     font-size:25px;
     letter-spacing:7px;
+
     color:#f0d58b;
-    text-shadow:0 0 15px rgba(239,203,110,.6);
+
+    text-shadow:
+        0 0 15px rgba(239,203,110,.6);
+
     pointer-events:none;
 }
 
-/* INDICACIÓN PARA ABRIR FOTO */
+/* =====================================================
+   INDICACIÓN PARA ABRIR FOTO
+   ===================================================== */
 
 .photo-hint{
     position:absolute;
+
     left:50%;
     bottom:17px;
+
     transform:translateX(-50%);
+
     z-index:5;
 
     padding:8px 15px;
@@ -224,19 +261,24 @@ body{
     border-radius:30px;
 
     background:rgba(0,0,0,.58);
+
     backdrop-filter:blur(7px);
 
     color:#e8ca7b;
+
     font-size:8px;
     letter-spacing:2px;
 
     white-space:nowrap;
+
     pointer-events:none;
 
     opacity:.78;
 }
 
-/* TITULO */
+/* =====================================================
+   TÍTULO
+   ===================================================== */
 
 .title-area{
     text-align:center;
@@ -253,10 +295,15 @@ body{
 h1{
     font-family:'Cinzel',serif;
     font-weight:500;
+
     font-size:clamp(22px,6vw,39px);
+
     line-height:1.4;
+
     letter-spacing:2px;
+
     color:#e8c873;
+
     text-shadow:
         0 0 10px rgba(232,200,115,.22),
         0 10px 18px rgba(232,200,115,.07);
@@ -264,61 +311,96 @@ h1{
 
 .title-reflection{
     height:34px;
+
     overflow:hidden;
+
     margin-top:-2px;
+
     opacity:.25;
+
     transform:scaleY(-1);
+
     filter:blur(1.2px);
-    mask-image:linear-gradient(to bottom,black,transparent);
-    -webkit-mask-image:linear-gradient(to bottom,black,transparent);
+
+    mask-image:linear-gradient(
+        to bottom,
+        black,
+        transparent
+    );
+
+    -webkit-mask-image:linear-gradient(
+        to bottom,
+        black,
+        transparent
+    );
 }
 
 .title-reflection h1{
     color:#b89b55;
 }
 
-/* CARTA */
+/* =====================================================
+   CARTA
+   ===================================================== */
 
 .letter{
     position:relative;
+
     margin-top:8px;
+
     padding:34px 27px 38px;
+
     border-radius:27px;
+
     border:1px solid rgba(211,173,79,.28);
+
     background:
         linear-gradient(
             145deg,
             rgba(16,16,16,.96),
             rgba(5,5,5,.97)
         );
+
     box-shadow:
         0 25px 60px rgba(0,0,0,.7),
         inset 0 0 35px rgba(224,187,90,.025);
+
     overflow:hidden;
 }
 
 .letter::before{
     content:"";
+
     position:absolute;
+
     top:0;
     left:50%;
+
     width:70%;
     height:1px;
+
     transform:translateX(-50%);
-    background:linear-gradient(
-        90deg,
-        transparent,
-        #dcb866,
-        transparent
-    );
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #dcb866,
+            transparent
+        );
+
     box-shadow:0 0 14px #dcb866;
 }
 
 .letter::after{
     content:"";
+
     position:absolute;
+
     inset:auto -20% -120px;
+
     height:220px;
+
     background:
         repeating-linear-gradient(
             0deg,
@@ -327,86 +409,129 @@ h1{
             transparent 6px,
             transparent 15px
         );
-    transform:perspective(300px) rotateX(60deg);
+
+    transform:
+        perspective(300px)
+        rotateX(60deg);
+
     opacity:.5;
+
     pointer-events:none;
 }
 
-/* TEXTO */
+/* =====================================================
+   TEXTO
+   ===================================================== */
 
 .letter p{
     position:relative;
     z-index:2;
+
     font-size:15.5px;
+
     line-height:1.95;
+
     font-weight:300;
+
     color:#e6d8b3;
+
     margin-bottom:22px;
 }
 
 .letter strong{
     color:#efd17c;
+
     font-weight:600;
-    text-shadow:0 0 9px rgba(236,200,108,.15);
+
+    text-shadow:
+        0 0 9px rgba(236,200,108,.15);
 }
 
 .letter p:first-child{
     text-align:center;
+
     font-family:'Cinzel',serif;
+
     font-size:18px;
+
     letter-spacing:1px;
+
     color:#edcb74;
+
     margin-bottom:29px;
 }
 
 .signature{
     text-align:center;
+
     font-family:'Cinzel',serif;
+
     font-size:17px !important;
+
     letter-spacing:2px;
+
     color:#e9c86f !important;
+
     margin-top:30px;
 }
 
-/* SEPARADORES GATUNOS */
+/* =====================================================
+   SEPARADORES GATUNOS
+   ===================================================== */
 
 .cat-divider{
     display:flex;
+
     align-items:center;
     justify-content:center;
+
     gap:13px;
+
     margin:30px 0;
+
     color:#c8a95c;
+
     opacity:.75;
 }
 
 .cat-divider::before,
 .cat-divider::after{
     content:"";
+
     height:1px;
+
     width:65px;
-    background:linear-gradient(
-        90deg,
-        transparent,
-        rgba(219,183,87,.65)
-    );
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(219,183,87,.65)
+        );
 }
 
 .cat-divider::after{
-    background:linear-gradient(
-        90deg,
-        rgba(219,183,87,.65),
-        transparent
-    );
+    background:
+        linear-gradient(
+            90deg,
+            rgba(219,183,87,.65),
+            transparent
+        );
 }
 
-/* FRASE FINAL */
+/* =====================================================
+   FRASE FINAL
+   ===================================================== */
 
 .final-love{
     margin-top:35px;
+
     padding:31px 22px;
+
     border:1px solid rgba(172,77,255,.4);
+
     border-radius:23px;
+
     background:
         radial-gradient(
             circle at 50% 50%,
@@ -414,24 +539,33 @@ h1{
             transparent 65%
         ),
         rgba(7,3,11,.88);
+
     box-shadow:
         0 0 30px rgba(146,48,255,.10),
         inset 0 0 25px rgba(151,61,255,.06);
+
     text-align:center;
 }
 
 .final-love p{
     color:#d9c6eb;
+
     font-size:15px;
+
     line-height:1.9;
+
     margin-bottom:18px;
 }
 
 .final-love .neon{
     font-family:'Cinzel',serif;
+
     font-size:clamp(17px,5vw,24px);
+
     line-height:1.6;
+
     color:#e8baff;
+
     text-shadow:
         0 0 5px #c35cff,
         0 0 12px #9f32ff,
@@ -444,104 +578,147 @@ h1{
     font-style:italic;
 }
 
-/* BOTÓN DEL POEMA */
+/* =====================================================
+   BOTÓN DEL POEMA
+   ===================================================== */
 
 .poem-area{
     text-align:center;
+
     padding:38px 10px 10px;
 }
 
 .poem-label{
     font-size:10px;
+
     letter-spacing:4px;
+
     color:#806b43;
+
     margin-bottom:16px;
 }
 
 .poem-button{
     display:inline-flex;
+
     align-items:center;
     justify-content:center;
+
     gap:10px;
+
     min-height:54px;
+
     padding:0 27px;
+
     border-radius:50px;
+
     border:1px solid rgba(224,188,94,.6);
+
     color:#f0d17d;
+
     text-decoration:none;
+
     font-family:'Cinzel',serif;
+
     font-size:13px;
+
     letter-spacing:1px;
+
     background:rgba(10,10,10,.85);
+
     box-shadow:
         0 0 18px rgba(219,178,76,.09),
         inset 0 0 12px rgba(219,178,76,.04);
+
     transition:.35s ease;
 }
 
 .poem-button:hover{
     transform:translateY(-3px);
+
     border-color:#f1d27d;
+
     box-shadow:
         0 0 25px rgba(229,190,82,.22),
         0 8px 25px rgba(0,0,0,.4);
 }
 
-/* VISOR DE FOTO GRANDE */
+/* =====================================================
+   VISOR DE FOTO A PANTALLA COMPLETA
+   ===================================================== */
 
 .photo-viewer{
+
     position:fixed;
+
     inset:0;
-    z-index:9999;
+
+    width:100vw;
+    height:100dvh;
+
+    z-index:999999;
 
     display:none;
+
     align-items:center;
     justify-content:center;
 
-    padding:20px;
+    margin:0;
+    padding:0;
 
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(45,25,65,.25),
-            rgba(0,0,0,.97) 70%
-        );
+    background:#000;
 
-    backdrop-filter:blur(14px);
+    overflow:hidden;
 
     opacity:0;
-    transition:opacity .35s ease;
+
+    transition:opacity .3s ease;
 }
 
 .photo-viewer.active{
     opacity:1;
 }
 
-.photo-viewer img{
-    max-width:96vw;
-    max-height:82vh;
+/*
+   LA FOTO AHORA USA TODA LA PANTALLA DISPONIBLE.
+   NO TIENE max-width NI max-height PEQUEÑOS.
+*/
 
-    width:auto;
-    height:auto;
+.photo-viewer img{
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100vw;
+    height:100dvh;
+
+    max-width:none;
+    max-height:none;
+
+    margin:0;
+    padding:0;
+
+    display:block;
 
     object-fit:contain;
 
-    border-radius:14px;
+    border:none;
+    border-radius:0;
 
-    border:1px solid rgba(228,193,100,.65);
+    box-shadow:none;
 
-    box-shadow:
-        0 0 35px rgba(225,188,87,.18),
-        0 0 90px rgba(150,75,255,.10),
-        0 25px 80px rgba(0,0,0,.8);
+    background:#000;
 
-    animation:photoZoom .45s ease both;
+    animation:photoFullScreen .4s ease both;
 }
 
-@keyframes photoZoom{
+@keyframes photoFullScreen{
+
     from{
         opacity:0;
-        transform:scale(.88);
+        transform:scale(.96);
     }
 
     to{
@@ -550,72 +727,122 @@ h1{
     }
 }
 
+/* =====================================================
+   TÍTULO DEL VISOR
+   ===================================================== */
+
 .viewer-title{
+
     position:absolute;
-    top:24px;
+
+    top:18px;
     left:50%;
+
     transform:translateX(-50%);
 
+    z-index:5;
+
     color:#dcb866;
+
     font-family:'Cinzel',serif;
+
     font-size:11px;
+
     letter-spacing:3px;
 
     text-align:center;
+
     white-space:nowrap;
+
+    padding:8px 15px;
+
+    border:1px solid rgba(226,194,105,.25);
+
+    border-radius:30px;
+
+    background:rgba(0,0,0,.48);
+
+    backdrop-filter:blur(8px);
+
+    text-shadow:
+        0 0 12px rgba(226,194,105,.35);
 }
 
+/* =====================================================
+   BOTÓN VOLVER
+   ===================================================== */
+
 .close-photo{
+
     position:absolute;
 
     left:50%;
-    bottom:25px;
+    bottom:22px;
 
     transform:translateX(-50%);
 
-    min-width:190px;
-    padding:13px 22px;
+    z-index:10;
+
+    min-width:200px;
+
+    padding:14px 23px;
 
     border-radius:40px;
 
-    border:1px solid rgba(226,190,92,.6);
+    border:1px solid rgba(226,190,92,.7);
 
-    background:rgba(7,7,7,.88);
+    background:rgba(5,5,5,.82);
 
     color:#e9ca7a;
 
     font-family:'Cinzel',serif;
+
     font-size:12px;
+
     letter-spacing:1px;
 
     box-shadow:
-        0 0 20px rgba(223,184,80,.12);
+        0 0 25px rgba(223,184,80,.15);
 
     cursor:pointer;
+
+    backdrop-filter:blur(10px);
 
     transition:.3s ease;
 }
 
 .close-photo:hover{
-    box-shadow:
-        0 0 30px rgba(223,184,80,.25);
 
-    transform:translateX(-50%) translateY(-3px);
+    box-shadow:
+        0 0 35px rgba(223,184,80,.3);
+
+    transform:
+        translateX(-50%)
+        translateY(-3px);
 }
 
-/* PIE */
+/* =====================================================
+   PIE
+   ===================================================== */
 
 footer{
     text-align:center;
+
     margin-top:45px;
+
     color:#5f5339;
+
     font-size:9px;
+
     letter-spacing:3px;
 }
 
-/* ANIMACIONES */
+/* =====================================================
+   ANIMACIONES
+   ===================================================== */
 
 @keyframes appear{
+
     from{
         opacity:0;
         transform:translateY(20px);
@@ -628,6 +855,7 @@ footer{
 }
 
 @keyframes shine{
+
     0%,70%{
         transform:translateX(-120%);
     }
@@ -637,98 +865,147 @@ footer{
     }
 }
 
-/* MÓVIL */
+/* =====================================================
+   MÓVIL
+   ===================================================== */
 
 @media(max-width:600px){
 
     .page{
         width:93%;
+
         padding-top:17px;
         padding-bottom:40px;
     }
 
-    /*
-       IMPORTANTE:
-       No ponemos height fijo aquí.
-       Así la foto conserva su formato horizontal.
-    */
-
     .hero-image{
+
         width:100%;
+
         aspect-ratio:16 / 9;
+
         height:auto;
     }
 
     .photo-hint{
+
         font-size:7px;
+
         letter-spacing:1.4px;
+
         bottom:12px;
+
         padding:7px 11px;
     }
 
     .cat-mark{
+
         font-size:20px;
+
         bottom:12px;
     }
 
     .title-area{
+
         padding:30px 8px 25px;
     }
 
     h1{
+
         font-size:22px;
+
         letter-spacing:1.2px;
     }
 
     .letter{
+
         padding:29px 20px 32px;
+
         border-radius:22px;
     }
 
     .letter p{
+
         font-size:14.7px;
+
         line-height:1.88;
+
         margin-bottom:20px;
     }
 
     .letter p:first-child{
+
         font-size:16px;
     }
 
     .final-love{
+
         padding:27px 18px;
     }
 
     .final-love p{
+
         font-size:14px;
     }
 
     .poem-button{
+
         width:100%;
+
         font-size:12px;
     }
 
+    /*
+       IMPORTANTE:
+       AQUÍ YA NO LIMITAMOS EL VISOR A 75vh.
+       LA FOTO PUEDE USAR TODA LA PANTALLA.
+    */
+
     .photo-viewer{
-        padding:12px;
+
+        width:100vw;
+        height:100dvh;
+
+        padding:0;
     }
 
     .photo-viewer img{
-        max-width:96vw;
-        max-height:75vh;
-        border-radius:10px;
+
+        width:100vw;
+        height:100dvh;
+
+        max-width:none;
+        max-height:none;
+
+        object-fit:contain;
+
+        border-radius:0;
     }
 
     .viewer-title{
-        top:17px;
+
+        top:13px;
+
         font-size:8px;
-        letter-spacing:2px;
+
+        letter-spacing:1.6px;
+
         max-width:90%;
+
         white-space:normal;
+
+        line-height:1.5;
     }
 
     .close-photo{
-        bottom:18px;
-        min-width:180px;
+
+        bottom:17px;
+
+        min-width:190px;
+
+        padding:13px 18px;
+
+        font-size:10px;
     }
 }
 </style>
@@ -750,7 +1027,9 @@ footer{
 
 <main class="page">
 
-    <!-- IMAGEN SUPERIOR -->
+    <!-- =================================================
+         IMAGEN SUPERIOR
+         ================================================= -->
 
     <section class="hero">
 
@@ -775,6 +1054,9 @@ footer{
 
         </div>
 
+
+        <!-- TÍTULO -->
+
         <div class="title-area">
 
             <div class="small-line">
@@ -786,9 +1068,11 @@ footer{
             </h1>
 
             <div class="title-reflection">
+
                 <h1>
                     ✦ DONDE OCTUBRE GUARDA TU NOMBRE ✦
                 </h1>
+
             </div>
 
         </div>
@@ -796,7 +1080,9 @@ footer{
     </section>
 
 
-    <!-- CARTA -->
+    <!-- =================================================
+         CARTA
+         ================================================= -->
 
     <article class="letter">
 
@@ -821,7 +1107,7 @@ footer{
         </p>
 
         <p>
-            Yo lo quise demasiado, amor… y todavía lo quiero desde ese pedacito de historia que compartimos con el.
+            Yo lo quise demasiado, amor… y todavía lo quiero desde ese pedacito de historia que compartimos contigo.
         </p>
 
         <p>
@@ -841,12 +1127,16 @@ footer{
     </article>
 
 
+    <!-- SEPARADOR -->
+
     <div class="cat-divider">
         🐾 ✦ 🐾
     </div>
 
 
-    <!-- CIERRE ESPECIAL -->
+    <!-- =================================================
+         CIERRE ESPECIAL
+         ================================================= -->
 
     <section class="final-love">
 
@@ -866,7 +1156,9 @@ footer{
     </section>
 
 
-    <!-- BOTÓN DEL POEMA -->
+    <!-- =================================================
+         POEMA
+         ================================================= -->
 
     <section class="poem-area">
 
@@ -884,6 +1176,8 @@ footer{
     </section>
 
 
+    <!-- PIE -->
+
     <footer>
         OCTUBRE · 01 · 2026
     </footer>
@@ -891,7 +1185,9 @@ footer{
 </main>
 
 
-<!-- VISOR DE LA FOTO -->
+<!-- =====================================================
+     VISOR DE FOTO A PANTALLA COMPLETA
+     ===================================================== -->
 
 <div
     class="photo-viewer"
@@ -902,10 +1198,12 @@ footer{
         ✦ UN PEQUEÑO RECUERDO PARA OCTUBRE ✦
     </div>
 
+
     <img
         src="file_00000000b9d4822f9ef6fb2285a17c70.png"
         alt="Recuerdo especial"
     >
+
 
     <button
         class="close-photo"
@@ -919,13 +1217,18 @@ footer{
 
 <script>
 
-/* ABRIR FOTO */
+/* =====================================================
+   ABRIR FOTO A PANTALLA COMPLETA
+   ===================================================== */
 
 function openPhoto(){
 
-    const viewer = document.getElementById("photoViewer");
+    const viewer =
+        document.getElementById("photoViewer");
 
     viewer.style.display = "flex";
+
+    document.body.style.overflow = "hidden";
 
     requestAnimationFrame(function(){
 
@@ -933,15 +1236,17 @@ function openPhoto(){
 
     });
 
-    document.body.style.overflow = "hidden";
 }
 
 
-/* CERRAR FOTO */
+/* =====================================================
+   CERRAR FOTO
+   ===================================================== */
 
 function closePhoto(){
 
-    const viewer = document.getElementById("photoViewer");
+    const viewer =
+        document.getElementById("photoViewer");
 
     viewer.classList.remove("active");
 
@@ -949,15 +1254,20 @@ function closePhoto(){
 
         viewer.style.display = "none";
 
-    },350);
+        document.body.style.overflow = "";
 
-    document.body.style.overflow = "";
+    },300);
+
 }
 
 
-/* TOCAR FUERA DE LA FOTO PARA CERRAR */
+/* =====================================================
+   TOCAR FUERA DE LA FOTO
+   ===================================================== */
 
-document.getElementById("photoViewer").addEventListener(
+document
+.getElementById("photoViewer")
+.addEventListener(
     "click",
     function(event){
 
@@ -971,7 +1281,9 @@ document.getElementById("photoViewer").addEventListener(
 );
 
 
-/* TECLA ESC */
+/* =====================================================
+   TECLA ESC
+   ===================================================== */
 
 document.addEventListener(
     "keydown",
@@ -989,4 +1301,4 @@ document.addEventListener(
 </script>
 
 </body>
-</html> 
+    </html>
